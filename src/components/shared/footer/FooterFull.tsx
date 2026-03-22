@@ -77,7 +77,7 @@ export default function FooterFull() {
       </div>
 
       <div className="mt-10 border-t border-black/10 pt-6 text-center text-xs text-[#777] sm:flex sm:items-center sm:justify-between sm:text-left">
-        <p>© 2026 Shopee. Tất cả các quyền được bảo lưu.</p>
+        <p>&copy; 2026 Shopee. Tất cả các quyền được bảo lưu.</p>
         <p className="mt-2 sm:mt-0">Quốc gia & Khu vực: {regions.join(" | ")}</p>
       </div>
 

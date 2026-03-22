@@ -12,7 +12,7 @@ export default function DownloadApp() {
             alt={shopeeQr.alt}
             width={shopeeQr.width}
             height={shopeeQr.height}
-            className="h-20 w-20 object-contain"
+            className="object-contain"
           />
         </div>
         <div className="space-y-2">
