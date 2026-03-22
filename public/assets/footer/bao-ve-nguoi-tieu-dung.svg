@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="225" viewBox="0 0 600 225" fill="none">
+  <rect x="8" y="8" width="584" height="209" rx="28" fill="#FFF8F5" stroke="#EE4D2D" stroke-width="16"/>
+  <circle cx="102" cy="113" r="62" fill="#EE4D2D" fill-opacity="0.12"/>
+  <path d="M102 59L146 77V107C146 136 127 162 102 170C77 162 58 136 58 107V77L102 59Z" fill="#EE4D2D"/>
+  <path d="M87 108L99 120L121 96" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="180" y="96" fill="#EE4D2D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">BAO VE NGUOI</text>
+  <text x="180" y="142" fill="#EE4D2D" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">TIEU DUNG</text>
+</svg>
