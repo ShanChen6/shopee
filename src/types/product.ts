@@ -6,4 +6,5 @@ export interface Product {
   rating: number;
   sold: number;
   category_id: string;
+  subcategory?: string;
 }

@@ -42,7 +42,7 @@ export const headerVariantConfig: Record<HeaderVariant, HeaderVariantConfig> = {
     searchPlaceholder: "Tìm trong danh mục: Balo & Ví Nam",
   },
   product: {
-    showTopBar: false,
+    showTopBar: true,
     showQuickLinks: false,
     quickLinks: [],
     searchPlaceholder: "Tìm sản phẩm tương tự",

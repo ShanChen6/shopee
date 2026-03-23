@@ -229,7 +229,7 @@ export default function CategoryPage() {
 						{allCategories.map((category) => (
 							<Link
 								key={category.id}
-								href="/main/product"
+								href={`/main/product?category=${category.id}`}
 								className="group rounded-md p-3 transition hover:-translate-y-0.5 hover:shadow-shoppe"
 							>
 								<div className="mx-auto flex w-fit items-center justify-center rounded-full bg-[#fff6f3] p-2.5">
@@ -260,7 +260,7 @@ export default function CategoryPage() {
 									return (
 										<div key={category.id} className="p-3">
 											<Link
-												href="/main/product"
+												href={`/main/product?category=${category.id}`}
 												className="group block transition hover:text-[#ee4d2d]"
 											>
 												<h3 className="text-sm font-semibold text-[#333] transition group-hover:text-[#ee4d2d]">
@@ -274,7 +274,10 @@ export default function CategoryPage() {
 													{category.subcategories.map((subcat) => (
 														<Link
 															key={subcat}
-															href="/main/product"
+															href={{
+																pathname: "/main/product",
+																query: { category: category.id, subcategory: subcat },
+															}}
 															className="block text-xs text-[#666] transition hover:text-[#ee4d2d]"
 														>
 															{subcat}

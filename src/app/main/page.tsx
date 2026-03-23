@@ -213,10 +213,10 @@ export default function Home() {
     <div className="min-h-screen bg-[#f5f5f5]">
       <Header variant="main" />
       <main className="mx-auto flex max-w-[1200px] flex-col gap-2 px-4 py-3">
-        <section className="grid gap-1.5 lg:grid-cols-[2fr_1fr]">
+        <section className="grid gap-1.5 md:grid-cols-[2fr_1fr]">
           <article className="overflow-hidden rounded-2xl bg-white shadow-shoppe">
             <Link href="/main/product" className="block">
-              <div className="relative h-[165px] w-full overflow-hidden bg-white sm:h-[200px] lg:h-[220px]">
+              <div className="relative h-[180px] w-full overflow-hidden bg-white sm:h-[220px] md:h-[240px]">
                 <div
                   className="flex h-full w-full transition-transform duration-500 ease-out"
                   style={{ transform: `translateX(-${currentBanner * 100}%)` }}
@@ -278,19 +278,19 @@ export default function Home() {
             </Link>
           </article>
 
-          <div className="grid gap-1.5 sm:grid-cols-2 lg:grid-cols-1">
+          <div className="grid gap-1.5 grid-cols-2 md:grid-cols-1">
             {staticBanners.map((banner, index) => (
               <Link
                 key={banner}
                 href="/main/category"
                 className="block overflow-hidden rounded-2xl bg-white shadow-shoppe"
               >
-                <div className="relative h-[76px] bg-white sm:h-[95px] lg:h-[104px]">
+                <div className="relative h-[76px] bg-white sm:h-[95px] md:h-[113px]">
                   <Image
                     src={banner}
                     alt={`Banner tinh ${index + 1}`}
                     fill
-                    sizes="(max-width: 1024px) 50vw, 380px"
+                    sizes="(max-width: 768px) 50vw, 380px"
                     className="object-contain"
                   />
                 </div>
@@ -340,7 +340,7 @@ export default function Home() {
                   {topRowCategories.map((category) => (
                     <Link
                       key={category.id}
-                      href="/main/category"
+                      href={`/main/product?category=${category.id}`}
                       className="group w-[124px] snap-start bg-white p-2 transition hover:-translate-y-0.5 hover:shadow-shoppe"
                     >
                       <div className="mx-auto w-fit bg-white p-1.5">
@@ -365,7 +365,7 @@ export default function Home() {
                   {bottomRowCategories.map((category) => (
                     <Link
                       key={category.id}
-                      href="/main/category"
+                      href={`/main/product?category=${category.id}`}
                       className="group w-[124px] snap-start bg-white p-2 transition hover:-translate-y-0.5 hover:shadow-shoppe"
                     >
                       <div className="mx-auto w-fit bg-white p-1.5">
@@ -394,7 +394,7 @@ export default function Home() {
           <div className="flex items-center justify-center">
             <h2 className="text-base font-semibold text-[#ee4d2d] sm:text-lg">Gợi ý hôm nay</h2>
           </div>
-          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
             {featuredProducts.map((product) => (
               <Link
                 key={product.id}
