@@ -391,11 +391,8 @@ export default function Home() {
         </section>
 
         <section className="rounded-xl bg-white p-4 shadow-shoppe sm:p-5">
-          <div className="flex items-center justify-between">
-            <h2 className="text-base font-semibold text-[#222] sm:text-lg">Danh sach san pham</h2>
-            <Link href="/main/product" className="text-xs font-medium text-[#ee4d2d] hover:underline sm:text-sm">
-              Xem chi tiet
-            </Link>
+          <div className="flex items-center justify-center">
+            <h2 className="text-base font-semibold text-[#ee4d2d] sm:text-lg">Gợi ý hôm nay</h2>
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5">
             {featuredProducts.map((product) => (
