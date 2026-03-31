@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
+import FlashSaleCountdown from "../../../../components/shared/product/FlashSaleCountdown";
 
 type ProductDetailPageProps = {
   params: Promise<{ id: string }>;
@@ -154,10 +155,12 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               </div>
 
               <div className="mt-4 rounded-sm bg-[#fafafa] px-4 py-5">
-                <div className="mb-2 flex items-center gap-2">
-                  <span className="rounded bg-[#ee4d2d] px-2 py-0.5 text-xs font-semibold text-white">FLASH SALE</span>
-                  <span className="text-xs text-[#ee4d2d]">KẾT THÚC TRONG 02:14:09</span>
-                </div>
+                {product.flashSale && (
+                  <div className="mb-2 flex items-center gap-2">
+                    <span className="rounded bg-[#ee4d2d] px-2 py-0.5 text-xs font-semibold text-white">FLASH SALE</span>
+                    <FlashSaleCountdown initialSeconds={product.flashSale.endsInSeconds} />
+                  </div>
+                )}
 
                 <div className="flex flex-wrap items-end gap-3">
                   <span className="text-xl text-[#929292] line-through">₫{moneyFormatter.format(oldPrice)}</span>

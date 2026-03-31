@@ -42,6 +42,7 @@ export const products: Product[] = [
     sold: 1230,
     category_id: "cat-11",
     subcategory: "Balo Laptop",
+    flashSale: { endsInSeconds: 2 * 3600 + 14 * 60 + 9 },
   },
   {
     id: "sp-2",
@@ -132,6 +133,7 @@ export const products: Product[] = [
     sold: 1510,
     category_id: "cat-3",
     subcategory: "Tai Nghe Không Dây",
+    flashSale: { endsInSeconds: 1 * 3600 + 5 * 60 + 33 },
   },
   {
     id: "sp-7",
@@ -162,6 +164,7 @@ export const products: Product[] = [
     sold: 1880,
     category_id: "cat-17",
     subcategory: "Dụng Cụ Nhà Bếp",
+    flashSale: { endsInSeconds: 3 * 3600 + 42 * 60 + 0 },
   },
   {
     id: "sp-10",
@@ -212,6 +215,7 @@ export const products: Product[] = [
     sold: 3950,
     category_id: "cat-2",
     subcategory: "Ốp Lưng & Bao",
+    flashSale: { endsInSeconds: 0 * 3600 + 48 * 60 + 17 },
   },
   {
     id: "sp-19",
