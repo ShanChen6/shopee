@@ -31,6 +31,7 @@ type ProductPageProps = {
     minRating?: string | string[];
     onlyPromo?: string | string[];
     onlyLiked?: string | string[];
+    onlyFlashSale?: string | string[];
     sort?: string | string[];
     location?: string | string[];
     shippingUnit?: string | string[];
@@ -57,6 +58,7 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
   const selectedMinRatingParam = Array.isArray(params.minRating) ? params.minRating[0] : params.minRating;
   const selectedOnlyPromoParam = Array.isArray(params.onlyPromo) ? params.onlyPromo[0] : params.onlyPromo;
   const selectedOnlyLikedParam = Array.isArray(params.onlyLiked) ? params.onlyLiked[0] : params.onlyLiked;
+  const selectedOnlyFlashSaleParam = Array.isArray(params.onlyFlashSale) ? params.onlyFlashSale[0] : params.onlyFlashSale;
   const selectedSortParam = Array.isArray(params.sort) ? params.sort[0] : params.sort;
   const selectedLocations = toArray(params.location).filter((item) => locationOptions.includes(item));
   const selectedShippingUnits = toArray(params.shippingUnit).filter((item) => shippingUnitOptions.includes(item));
@@ -69,6 +71,7 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
   const selectedMinRating = Number.parseFloat(selectedMinRatingParam ?? "");
   const onlyPromo = selectedOnlyPromoParam === "1";
   const onlyLiked = selectedOnlyLikedParam === "1";
+  const onlyFlashSale = selectedOnlyFlashSaleParam === "1";
   const selectedSort: SortOptionId =
     selectedSortParam === "newest" ||
     selectedSortParam === "bestseller" ||
@@ -99,6 +102,7 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
       : {}),
     ...(onlyPromo ? { onlyPromo: "1" } : {}),
     ...(onlyLiked ? { onlyLiked: "1" } : {}),
+    ...(onlyFlashSale ? { onlyFlashSale: "1" } : {}),
     ...(selectedLocations.length > 0 ? { location: selectedLocations } : {}),
     ...(selectedShippingUnits.length > 0 ? { shippingUnit: selectedShippingUnits } : {}),
     ...(selectedBrands.length > 0 ? { brand: selectedBrands } : {}),
@@ -143,6 +147,10 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
     }
 
     if (onlyLiked && !likedProductIds.has(product.id)) {
+      return false;
+    }
+
+    if (onlyFlashSale && !product.flashSale) {
       return false;
     }
 
@@ -244,7 +252,7 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
         <section className="mt-3 grid gap-3 lg:grid-cols-[240px_1fr] lg:items-start">
           <aside className="overflow-hidden rounded-md bg-white shadow-shoppe lg:sticky lg:top-24">
             <MobileFilterToggle>
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-[#333]">Danh mục con</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-[#333]">Danh mục</h2>
 
             {!selectedCategory ? (
               <p className="mt-3 text-sm text-[#666]">Chọn một danh mục để xem các nhóm con theo cột dọc.</p>
@@ -459,7 +467,7 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
                 <div className="flex flex-wrap items-center gap-2">
                   <span className="hidden text-sm text-[#555] sm:inline">Sắp xếp theo</span>
                   {sortOptions.map((option) => {
-                    const active = selectedSort === option.id;
+                    const active = selectedSort === option.id && !onlyFlashSale;
 
                     return (
                       <Link
@@ -469,7 +477,7 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
                           query: {
                             ...(selectedCategory ? { category: selectedCategory } : {}),
                             ...(selectedSubcategory ? { subcategory: selectedSubcategory } : {}),
-                            ...filterQuery,
+                            ...{ ...filterQuery, onlyFlashSale: undefined },
                             ...(option.id !== "popular" ? { sort: option.id } : {}),
                           },
                         }}
@@ -483,6 +491,26 @@ export default async function ProductPage({ searchParams }: ProductPageProps) {
                       </Link>
                     );
                   })}
+
+                  <Link
+                    href={{
+                      pathname: "/main/product",
+                      query: {
+                        ...(selectedCategory ? { category: selectedCategory } : {}),
+                        ...(selectedSubcategory ? { subcategory: selectedSubcategory } : {}),
+                        ...{ ...filterQuery, onlyFlashSale: onlyFlashSale ? undefined : "1" },
+                        ...sortingQuery,
+                      },
+                    }}
+                    className={`flex items-center gap-1 rounded-sm px-3 py-1.5 text-sm font-semibold transition ${
+                      onlyFlashSale
+                        ? "bg-[#ee4d2d] text-white"
+                        : "bg-white text-[#ee4d2d] hover:bg-[#fff1ed]"
+                    }`}
+                  >
+                    <span>⚡</span>
+                    <span>Flash Sale</span>
+                  </Link>
 
                   <PriceSortDropdown selectedSort={selectedSort} />
                 </div>

@@ -1,3 +1,8 @@
+export interface FlashSale {
+  /** Số giây đếm ngược cho đến khi kết thúc */
+  endsInSeconds: number;
+}
+
 export interface Product {
   id: string;
   name: string;
@@ -7,4 +12,5 @@ export interface Product {
   sold: number;
   category_id: string;
   subcategory?: string;
+  flashSale?: FlashSale;
 }
